@@ -1,0 +1,10 @@
+{
+	"flightId":"XYZ123123",
+  "origin":"wroclaw",
+  "destination": "cairo",
+  "timeHour": 10,
+  "timeMinute": 50,
+  "dayOfWeek": 4,
+  "dollarPrice": 100,
+  "brand": "B"
+}
