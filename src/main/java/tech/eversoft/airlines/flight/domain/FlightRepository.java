@@ -1,7 +1,5 @@
 package tech.eversoft.airlines.flight.domain;
 
-import tech.eversoft.airlines.common.domain.FlightId;
-
 import java.util.Collection;
 import java.util.Optional;
 

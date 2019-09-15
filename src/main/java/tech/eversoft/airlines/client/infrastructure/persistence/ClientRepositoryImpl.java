@@ -1,10 +1,9 @@
 package tech.eversoft.airlines.client.infrastructure.persistence;
 
-import lombok.Data;
 import org.springframework.stereotype.Repository;
 import tech.eversoft.airlines.client.domain.Client;
 import tech.eversoft.airlines.client.domain.ClientRepository;
-import tech.eversoft.airlines.common.domain.ClientId;
+import tech.eversoft.airlines.client.domain.ClientId;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import tech.eversoft.airlines.common.domain.ClientId;
-import tech.eversoft.airlines.common.domain.FlightId;
+import tech.eversoft.airlines.client.domain.ClientId;
+import tech.eversoft.airlines.flight.domain.FlightId;
 import tech.eversoft.airlines.ordering.order.domain.Order;
 import tech.eversoft.airlines.ordering.order.domain.OrderService;
 

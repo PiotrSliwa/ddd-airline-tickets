@@ -1,9 +1,9 @@
 package tech.eversoft.airlines.ordering.order.domain
 
 import spock.lang.Specification
-import tech.eversoft.airlines.common.domain.ClientId
+import tech.eversoft.airlines.client.domain.ClientId
 import tech.eversoft.airlines.common.events.DomainEventPublisher
-import tech.eversoft.airlines.common.domain.FlightId
+import tech.eversoft.airlines.flight.domain.FlightId
 
 class OrderServiceTest extends Specification {
     def "Create"() {

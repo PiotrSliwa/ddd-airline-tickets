@@ -1,4 +1,4 @@
-package tech.eversoft.airlines.common.domain;
+package tech.eversoft.airlines.client.domain;
 
 import lombok.NonNull;
 import lombok.Value;

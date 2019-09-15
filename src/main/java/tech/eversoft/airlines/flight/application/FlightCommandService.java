@@ -2,9 +2,8 @@ package tech.eversoft.airlines.flight.application;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 import tech.eversoft.airlines.common.domain.DollarPrice;
-import tech.eversoft.airlines.common.domain.FlightId;
+import tech.eversoft.airlines.flight.domain.FlightId;
 import tech.eversoft.airlines.flight.domain.*;
 import tech.eversoft.airlines.flight.infrastructure.web.CreateFlightCommand;
 

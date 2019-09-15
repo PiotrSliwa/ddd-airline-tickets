@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import tech.eversoft.airlines.common.domain.ClientId;
 
 import java.time.LocalDate;
 

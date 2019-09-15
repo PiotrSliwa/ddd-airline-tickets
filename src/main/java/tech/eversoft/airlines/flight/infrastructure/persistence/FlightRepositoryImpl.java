@@ -1,8 +1,7 @@
 package tech.eversoft.airlines.flight.infrastructure.persistence;
 
-import lombok.Data;
 import org.springframework.stereotype.Repository;
-import tech.eversoft.airlines.common.domain.FlightId;
+import tech.eversoft.airlines.flight.domain.FlightId;
 import tech.eversoft.airlines.flight.domain.Flight;
 import tech.eversoft.airlines.flight.domain.FlightRepository;
 

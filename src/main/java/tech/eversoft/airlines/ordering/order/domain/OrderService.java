@@ -1,9 +1,9 @@
 package tech.eversoft.airlines.ordering.order.domain;
 
 import lombok.AllArgsConstructor;
-import tech.eversoft.airlines.common.domain.ClientId;
+import tech.eversoft.airlines.client.domain.ClientId;
 import tech.eversoft.airlines.common.events.DomainEventPublisher;
-import tech.eversoft.airlines.common.domain.FlightId;
+import tech.eversoft.airlines.flight.domain.FlightId;
 import tech.eversoft.airlines.ordering.transaction.domain.TransactionCreated;
 
 @AllArgsConstructor

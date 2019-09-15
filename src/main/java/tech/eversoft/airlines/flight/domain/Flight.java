@@ -4,7 +4,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
 import tech.eversoft.airlines.common.domain.Brand;
-import tech.eversoft.airlines.common.domain.FlightId;
 
 @Data
 @Builder

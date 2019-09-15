@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import tech.eversoft.airlines.client.domain.Client;
 import tech.eversoft.airlines.client.domain.ClientRepository;
-import tech.eversoft.airlines.common.domain.ClientId;
+import tech.eversoft.airlines.client.domain.ClientId;
 
 import java.util.Collection;
 

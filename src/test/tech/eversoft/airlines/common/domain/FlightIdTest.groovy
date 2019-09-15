@@ -1,6 +1,8 @@
 package tech.eversoft.airlines.common.domain
 
 import spock.lang.Specification
+import tech.eversoft.airlines.flight.domain.FlightId
+import tech.eversoft.airlines.flight.domain.InvalidFlightIdFormat
 
 class FlightIdTest extends Specification {
     def "Create"() {

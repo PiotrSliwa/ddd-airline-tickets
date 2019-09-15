@@ -4,7 +4,7 @@ import spock.lang.Specification
 import tech.eversoft.airlines.client.domain.Client
 import tech.eversoft.airlines.common.domain.Brand
 import tech.eversoft.airlines.common.domain.DollarPrice
-import tech.eversoft.airlines.common.domain.FlightId
+import tech.eversoft.airlines.flight.domain.FlightId
 import tech.eversoft.airlines.flight.domain.Flight
 import tech.eversoft.airlines.flight.domain.Route
 import tech.eversoft.airlines.flight.domain.Schedule
