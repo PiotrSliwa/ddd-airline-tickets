@@ -28,21 +28,26 @@ class BuyTicketTest extends Specification {
     static def formatDate(LocalDateTime localDateTime) {
         localDateTime.format(DateTimeFormatter.ofPattern('yyyy-MM-dd'))
     }
-    static def nextThursday = LocalDateTime.now().with(TemporalAdjusters.next(DayOfWeek.THURSDAY))
+    static def soonestThursday = LocalDateTime.now().with(TemporalAdjusters.nextOrSame(DayOfWeek.THURSDAY))
+    static def soonestMonday = LocalDateTime.now().with(TemporalAdjusters.nextOrSame(DayOfWeek.MONDAY))
 
-    static def expectedId = 0
+    static def currentId = 0
+
+    def cleanup() {
+        currentId++
+    }
 
     def 'Successfully  buying a ticket to Africa of brand A, on Thursday, on a birthday'() {
         given:
-        def dateOfBirth = formatDate(nextThursday.minusYears(50))
+        def dateOfBirth = formatDate(soonestThursday.minusYears(50))
         def flightId = 'XYZ123123'
         def basePrice = 27
 
         and:
-        def expectedClientId = 0
-        def expectedOrderId = 0
-        def expectedTransactionId = 0
-        def expectedCalculationId = 0
+        def expectedClientId = currentId
+        def expectedOrderId = currentId
+        def expectedTransactionId = currentId
+        def expectedCalculationId = currentId
         def expectedDiscountedPrice = 20
 
         expect: 'add a client'
@@ -104,15 +109,15 @@ class BuyTicketTest extends Specification {
 
     def 'Successfully buying a ticket to Africa of brand B, on Thursday'() {
         given:
-        def dateOfBirth = formatDate(nextThursday.minusYears(50).minusDays(2))
+        def dateOfBirth = formatDate(soonestThursday.minusYears(50).minusDays(2))
         def flightId = 'XYZ123123'
         def basePrice = 27
 
         and:
-        def expectedClientId = 1
-        def expectedOrderId = 1
-        def expectedTransactionId = 1
-        def expectedCalculationId = 1
+        def expectedClientId = currentId
+        def expectedOrderId = currentId
+        def expectedTransactionId = currentId
+        def expectedCalculationId = currentId
         def expectedDiscountedPrice = 22
 
         expect: 'add a client'
@@ -168,6 +173,68 @@ class BuyTicketTest extends Specification {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath('$.dollarPrice').value(expectedDiscountedPrice))
                 .andExpect(jsonPath('$.discounts', Matchers.hasSize(0)))
+    }
+
+    def 'Successfully buying a ticket for an imported flight to Africa of brand A, on Monday, on a birthday'() {
+        given:
+        def dateOfBirth = formatDate(soonestMonday.minusYears(50))
+        def flightId = 'XYZ123123'
+
+        and:
+        def expectedClientId = currentId
+        def expectedOrderId = currentId
+        def expectedTransactionId = currentId
+        def expectedCalculationId = currentId
+        def expectedDiscountedPrice = 95
+
+        expect: 'add a client'
+        mockMvc
+                .perform(post('/client')
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(JsonOutput.toJson([
+                                birthDate: dateOfBirth
+                        ])))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath('$.clientId.id').value(expectedClientId))
+
+        and: 'add a flight'
+        mockMvc
+                .perform(post('/flight/import')
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(JsonOutput.toJson([
+                                url: 'https://raw.githubusercontent.com/PiotrSliwa/ddd-airline-tickets/master/exampleCreateFlightCommand.json'
+                        ])))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath('$.flightId.id').value(flightId))
+                .andExpect(jsonPath('$.schedule.dayOfWeek').value('MONDAY'))
+
+        and: 'place an order'
+        mockMvc
+                .perform(post('/order')
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(JsonOutput.toJson([
+                                clientId: expectedClientId,
+                                flightId: flightId
+                        ])))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath('$.id.id').value(expectedOrderId))
+                .andExpect(jsonPath('$.transactionId.id').value(expectedTransactionId))
+                .andExpect(jsonPath('$.status').value('PendingPayment'))
+
+        and: 'check transaction price'
+        mockMvc
+                .perform(get("/transaction/$expectedTransactionId"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath('$.price.amount').value(expectedDiscountedPrice))
+                .andExpect(jsonPath('$.calculationId.id').value(expectedCalculationId))
+
+        and: 'check discounts'
+        mockMvc
+                .perform(get("/calculation/$expectedCalculationId"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath('$.dollarPrice').value(expectedDiscountedPrice))
+                .andExpect(jsonPath('$.discounts', Matchers.hasSize(1)))
+                .andExpect(jsonPath('$.discounts', Matchers.hasItem('BirthdayDiscount()')))
     }
 }
 
