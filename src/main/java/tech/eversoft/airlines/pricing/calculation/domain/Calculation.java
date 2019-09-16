@@ -2,11 +2,9 @@ package tech.eversoft.airlines.pricing.calculation.domain;
 
 import lombok.*;
 import tech.eversoft.airlines.common.domain.DollarPrice;
-import tech.eversoft.airlines.flight.domain.Flight;
-import tech.eversoft.airlines.ordering.transaction.domain.TransactionId;
+import tech.eversoft.airlines.transaction.domain.TransactionId;
 import tech.eversoft.airlines.pricing.discount.domain.Discount;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 

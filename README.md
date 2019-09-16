@@ -1,5 +1,7 @@
 # ddd-airline-tickets
 
+## Overview
+
 A basic system for handling airline ticket ordering.
 
 REST endpoints:
@@ -11,6 +13,10 @@ REST endpoints:
 * `POST /flight/import (application/json)`
 * `GET /order`
 * `GET /calculation/id`
+
+## Strategic design
+
+![Strategic design](Strategic-Architecture.png)
 
 ## Build
 

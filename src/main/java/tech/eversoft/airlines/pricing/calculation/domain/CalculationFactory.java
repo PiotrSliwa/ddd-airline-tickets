@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import tech.eversoft.airlines.client.domain.Client;
 import tech.eversoft.airlines.common.domain.Brand;
 import tech.eversoft.airlines.flight.domain.Flight;
-import tech.eversoft.airlines.ordering.transaction.domain.TransactionId;
+import tech.eversoft.airlines.transaction.domain.TransactionId;
 import tech.eversoft.airlines.pricing.discount.domain.DiscountFactory;
 
 class NotSupportedBrand extends RuntimeException {

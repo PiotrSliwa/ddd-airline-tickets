@@ -9,13 +9,13 @@ import tech.eversoft.airlines.flight.domain.FlightId
 import tech.eversoft.airlines.common.events.DomainEventPublisher
 import tech.eversoft.airlines.flight.domain.Flight
 import tech.eversoft.airlines.flight.domain.FlightRepository
-import tech.eversoft.airlines.ordering.order.domain.Order
-import tech.eversoft.airlines.ordering.order.domain.OrderId
-import tech.eversoft.airlines.ordering.order.domain.OrderRepository
-import tech.eversoft.airlines.ordering.transaction.domain.Transaction
-import tech.eversoft.airlines.ordering.transaction.domain.TransactionCreated
-import tech.eversoft.airlines.ordering.transaction.domain.TransactionId
-import tech.eversoft.airlines.ordering.transaction.domain.TransactionRepository
+import tech.eversoft.airlines.order.domain.Order
+import tech.eversoft.airlines.order.domain.OrderId
+import tech.eversoft.airlines.order.domain.OrderRepository
+import tech.eversoft.airlines.transaction.domain.Transaction
+import tech.eversoft.airlines.transaction.domain.TransactionCreated
+import tech.eversoft.airlines.transaction.domain.TransactionId
+import tech.eversoft.airlines.transaction.domain.TransactionRepository
 
 class CalculationServiceTest extends Specification {
     def "Handle TransactionCreated"() {

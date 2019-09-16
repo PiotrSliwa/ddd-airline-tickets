@@ -4,7 +4,7 @@ import lombok.NonNull;
 import lombok.Value;
 import tech.eversoft.airlines.common.domain.DollarPrice;
 import tech.eversoft.airlines.common.events.DomainEvent;
-import tech.eversoft.airlines.ordering.transaction.domain.TransactionId;
+import tech.eversoft.airlines.transaction.domain.TransactionId;
 
 @Value
 public class PriceCalculated implements DomainEvent {

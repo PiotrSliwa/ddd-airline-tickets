@@ -5,9 +5,9 @@ import lombok.NoArgsConstructor;
 import tech.eversoft.airlines.client.domain.ClientRepository;
 import tech.eversoft.airlines.common.events.DomainEventPublisher;
 import tech.eversoft.airlines.flight.domain.FlightRepository;
-import tech.eversoft.airlines.ordering.order.domain.OrderRepository;
-import tech.eversoft.airlines.ordering.transaction.domain.TransactionCreated;
-import tech.eversoft.airlines.ordering.transaction.domain.TransactionRepository;
+import tech.eversoft.airlines.order.domain.OrderRepository;
+import tech.eversoft.airlines.transaction.domain.TransactionCreated;
+import tech.eversoft.airlines.transaction.domain.TransactionRepository;
 
 @AllArgsConstructor
 @NoArgsConstructor

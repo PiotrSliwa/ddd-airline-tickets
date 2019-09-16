@@ -2,7 +2,7 @@ package tech.eversoft.airlines.pricing.calculation.domain
 
 import spock.lang.Specification
 import tech.eversoft.airlines.common.domain.DollarPrice
-import tech.eversoft.airlines.ordering.transaction.domain.TransactionId
+import tech.eversoft.airlines.transaction.domain.TransactionId
 import tech.eversoft.airlines.pricing.discount.domain.Discount
 
 class CalculationTest extends Specification {
