@@ -29,7 +29,7 @@ class BuyTicketTest extends Specification {
         localDateTime.format(DateTimeFormatter.ofPattern('yyyy-MM-dd'))
     }
     static def soonestThursday = LocalDateTime.now().with(TemporalAdjusters.nextOrSame(DayOfWeek.THURSDAY))
-    static def soonestMonday = LocalDateTime.now().with(TemporalAdjusters.nextOrSame(DayOfWeek.MONDAY))
+    static def tomorrow = LocalDateTime.now().plusDays(1)
 
     static def currentId = 0
 
@@ -175,9 +175,9 @@ class BuyTicketTest extends Specification {
                 .andExpect(jsonPath('$.discounts', Matchers.hasSize(0)))
     }
 
-    def 'Successfully buying a ticket for an imported flight to Africa of brand A, on Monday, on a birthday'() {
+    def 'Successfully buying a ticket for an imported flight to Africa of brand A, on Monday, NOT ony any birthday'() {
         given:
-        def dateOfBirth = formatDate(soonestMonday.minusYears(50))
+        def dateOfBirth = formatDate(tomorrow.minusYears(50).with(TemporalAdjusters.next(DayOfWeek.FRIDAY)))
         def flightId = 'XYZ123123'
 
         and:
@@ -185,7 +185,7 @@ class BuyTicketTest extends Specification {
         def expectedOrderId = currentId
         def expectedTransactionId = currentId
         def expectedCalculationId = currentId
-        def expectedDiscountedPrice = 95
+        def expectedPrice = 100
 
         expect: 'add a client'
         mockMvc
@@ -225,16 +225,15 @@ class BuyTicketTest extends Specification {
         mockMvc
                 .perform(get("/transaction/$expectedTransactionId"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath('$.price.amount').value(expectedDiscountedPrice))
+                .andExpect(jsonPath('$.price.amount').value(expectedPrice))
                 .andExpect(jsonPath('$.calculationId.id').value(expectedCalculationId))
 
         and: 'check discounts'
         mockMvc
                 .perform(get("/calculation/$expectedCalculationId"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath('$.dollarPrice').value(expectedDiscountedPrice))
-                .andExpect(jsonPath('$.discounts', Matchers.hasSize(1)))
-                .andExpect(jsonPath('$.discounts', Matchers.hasItem('BirthdayDiscount()')))
+                .andExpect(jsonPath('$.dollarPrice').value(expectedPrice))
+                .andExpect(jsonPath('$.discounts', Matchers.hasSize(0)))
     }
 }
 
